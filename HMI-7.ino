@@ -28,14 +28,14 @@ public:
       cfg.pin_d2  = GPIO_NUM_6;  // B2
       cfg.pin_d3  = GPIO_NUM_5;  // B3
       cfg.pin_d4  = GPIO_NUM_4;  // B4
-      
+
       cfg.pin_d5  = GPIO_NUM_9;  // G0
       cfg.pin_d6  = GPIO_NUM_46; // G1
       cfg.pin_d7  = GPIO_NUM_3;  // G2
       cfg.pin_d8  = GPIO_NUM_8;  // G3
       cfg.pin_d9  = GPIO_NUM_16; // G4
       cfg.pin_d10 = GPIO_NUM_1;  // G5
-      
+
       cfg.pin_d11 = GPIO_NUM_14; // R0
       cfg.pin_d12 = GPIO_NUM_21; // R1
       cfg.pin_d13 = GPIO_NUM_47; // R2
@@ -54,7 +54,7 @@ public:
       cfg.hsync_front_porch = 40;
       cfg.hsync_pulse_width = 48;
       cfg.hsync_back_porch  = 40;
-      
+
       cfg.vsync_polarity    = 0;
       cfg.vsync_front_porch = 1;
       cfg.vsync_pulse_width = 31;
@@ -134,7 +134,7 @@ void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color
 
   uint32_t w = (area->x2 - area->x1 + 1);
   uint32_t h = (area->y2 - area->y1 + 1);
-  
+
 
   //lcd.fillScreen(TFT_WHITE);
 #if (LV_COLOR_16_SWAP != 0)
@@ -489,7 +489,7 @@ void setup() {
   ui_init();//Boot UI
   while (1)
   {
-    
+
     if (goto_widget_flag == 1)//Go to widget
     {
       if (ticker1.active() == true)
