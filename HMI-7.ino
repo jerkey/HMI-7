@@ -1,9 +1,12 @@
 #include <lvgl.h>
-#include <demos/lv_demos.h>
+#include <demos/lv_demos.h> // /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/lvgl-3/demos/
 #define LGFX_USE_V1
 #include <LovyanGFX.hpp>
 #include <lgfx/v1/platforms/esp32s3/Panel_RGB.hpp>
 #include <lgfx/v1/platforms/esp32s3/Bus_RGB.hpp>
+
+static constexpr int MAGENTA = 0xF81F; // found in libraries/LovyanGFX/src/LGFX_TFT_eSPI.hpp
+static constexpr int BLACK = 0x0000;
 
 // Define a class named LGFX, inheriting from the LGFX_Device class.
 class LGFX : public lgfx::LGFX_Device {
@@ -537,7 +540,7 @@ void setup() {
       lv_timer_handler();
       delay(100);
      touch_calibrate();//Touch Calibration
-      lv_scr_load_anim(ui_TOUCH, LV_SCR_LOAD_ANIM_NONE, 0, 0, false);
+      lv_scr_load_anim(ui_TOUCH, LV_SCR_LOAD_ANIM_NONE, 0, 0, false); // LV_SCR_LOAD_ANIM_NONE from /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/lvgl-3/src/core/lv_disp.h
       lv_timer_handler();
       goto_widget_flag = 3; //Access to the touch screen logo
       touch_last_x = 0;
