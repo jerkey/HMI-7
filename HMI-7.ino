@@ -452,14 +452,13 @@ void setTouch(uint16_t *parameters) {
   touchCalibration_invert_y = parameters[4] & 0x04;
 }
 void setup() {
- // put your setup code here, to run once:
-  Serial.begin(115200); // Init Display
+  Serial.begin(115200);
+  Serial.println("HMI-7.ino branch: reduced");
   lcd.begin();
   lcd.fillScreen(BLACK);
   lcd.setTextSize(2);
-  delay(200);
 
-  lv_init();
+  lv_init(); // moving this had no effect
   touch_init();
   screenWidth = lcd.width();
   screenHeight = lcd.height();
@@ -487,6 +486,13 @@ void setup() {
 #endif
 
   ui_init();//Boot UI
+
+  Serial.println("no seriously, here is some text");
+  lcd.println("no seriously, here is some text, waiting 5sec"); // from LvglWidgets-LVGL-7.0/LvglWidgets-LVGL-7.0.ino
+  delay(5000); // see also libraries/LovyanGFX/examples/Standard/LongTextScroll/LongTextScroll.ino
+  lcd.println("5sec delay over"); // from LvglWidgets-LVGL-7.0/LvglWidgets-LVGL-7.0.ino
+  Serial.println("5sec delay over");
+
   while (1)
   {
 
