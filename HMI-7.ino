@@ -416,7 +416,7 @@ void touch_calibrate()//screen calibration
   uint8_t calDataOK = 0;
   Serial.println("screen calibration");
 
-  //校准
+  //校准 "calibration"
   Serial.println("Touch corners as directed");
   lv_timer_handler();
   calibrateTouch(calData, MAGENTA, BLACK, 17);
@@ -524,11 +524,11 @@ void setup() {
     }
 
     if (goto_widget_flag == 4)//触摸界面返回到Menu界面,使进度条清零重启
-    {
+    { // Touch the interface to return to the Menu interface, clear the progress bar and restart
 
       val = 100;
       delay(100);
-      ticker1.attach_ms(20, callback1);//每20ms调用callback1
+      ticker1.attach_ms(20, callback1);//每20ms调用callback1 is called every 20ms
       goto_widget_flag = 0;
     }
 
@@ -539,7 +539,7 @@ void setup() {
       lv_timer_handler();
       lv_timer_handler();
       delay(100);
-     touch_calibrate();//Touch Calibration
+      touch_calibrate();//Touch Calibration
       lv_scr_load_anim(ui_TOUCH, LV_SCR_LOAD_ANIM_NONE, 0, 0, false); // LV_SCR_LOAD_ANIM_NONE from /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/lvgl-3/src/core/lv_disp.h
       lv_timer_handler();
       goto_widget_flag = 3; //Access to the touch screen logo
@@ -552,7 +552,7 @@ void setup() {
       if (first_flag == 0)
       {
        lv_example_bar();
-        ticker1.attach_ms(20, callback1);//每20ms调用callback1
+        ticker1.attach_ms(20, callback1);//每20ms调用callback1 is called every 20ms
         first_flag = 1;
       }
     }
