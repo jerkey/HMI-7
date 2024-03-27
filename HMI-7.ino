@@ -495,6 +495,7 @@ void setup() {
   delay(5000); // see also libraries/LovyanGFX/examples/Standard/LongTextScroll/LongTextScroll.ino
   lcd.println("5sec delay over"); // from LvglWidgets-LVGL-7.0/LvglWidgets-LVGL-7.0.ino
   Serial.println("5sec delay over");
+  lcd.setTextScroll(true); // see LovyanGFX/src/lgfx/v0/LGFXBase.hpp
 
   /*while (1)
   {
