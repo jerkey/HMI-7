@@ -577,7 +577,7 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available()) lcd.print(Serial.read());
+  if (Serial.available()) lcd.print(char(Serial.read()));
   //lv_timer_handler();
   delay(5);
 }
