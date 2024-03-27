@@ -91,7 +91,7 @@ public:
 LGFX lcd;
 
 
-#include "touch.h"
+//#include "touch.h"
 
 static uint32_t screenWidth;
 static uint32_t screenHeight;
@@ -147,7 +147,7 @@ void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color
 
 }
 
-void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
+/*void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
 {
   if (touch_has_signal())
   {
@@ -155,7 +155,7 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
     {
       data->state = LV_INDEV_STATE_PR;
 
-      /*Set the coordinates*/
+      //Set the coordinates
       data->point.x = touch_last_x;
       data->point.y = touch_last_y;
       Serial.print( "Data x " );
@@ -172,9 +172,9 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
   {
     data->state = LV_INDEV_STATE_REL;
   }
-}
+}*/
 
-void callback1()  //Callback function
+/*void callback1()  //Callback function
 {
   if (bar_flag == 6)
   {
@@ -195,10 +195,10 @@ void callback1()  //Callback function
 
     }
   }
-}
+}*/
 
 //Touch Label Controls
-void label_xy()
+/*void label_xy()
 {
   ui_Label = lv_label_create(ui_TOUCH);
   lv_obj_enable_style_refresh(true);
@@ -222,7 +222,7 @@ void label_xy()
   lv_obj_set_style_text_opa(ui_Label3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_text_font(ui_Label3, &lv_font_montserrat_24, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-}
+}*/
 
 
 //Progress bar control
@@ -250,6 +250,7 @@ void lv_example_bar(void)
 
 #define Z_THRESHOLD 300 // Touch pressure threshold for validating touches
 #define _RAWERR 20 // Deadband error allowed in successive position samples
+/*
 void begin_touch_read_write(void) {
   digitalWrite(38, HIGH); // Just in case it has been left low
   spi.setFrequency(600000);
@@ -451,6 +452,8 @@ void setTouch(uint16_t *parameters) {
   touchCalibration_invert_x = parameters[4] & 0x02;
   touchCalibration_invert_y = parameters[4] & 0x04;
 }
+*/
+
 void setup() {
   Serial.begin(115200);
   Serial.println("HMI-7.ino branch: reduced");
@@ -459,7 +462,7 @@ void setup() {
   lcd.setTextSize(2);
 
   lv_init(); // moving this had no effect
-  touch_init();
+  //touch_init();
   screenWidth = lcd.width();
   screenHeight = lcd.height();
 
@@ -476,10 +479,10 @@ void setup() {
 
   /* Initialize the (dummy) input device driver */
   static lv_indev_drv_t indev_drv;
-  lv_indev_drv_init(&indev_drv);
+  //lv_indev_drv_init(&indev_drv);
  indev_drv.type = LV_INDEV_TYPE_POINTER;
-  indev_drv.read_cb = my_touchpad_read;
-  lv_indev_drv_register(&indev_drv);
+  //indev_drv.read_cb = my_touchpad_read;
+  //lv_indev_drv_register(&indev_drv);
 #ifdef TFT_BL
   pinMode(TFT_BL, OUTPUT);
   digitalWrite(TFT_BL, HIGH);
@@ -493,7 +496,7 @@ void setup() {
   lcd.println("5sec delay over"); // from LvglWidgets-LVGL-7.0/LvglWidgets-LVGL-7.0.ino
   Serial.println("5sec delay over");
 
-  while (1)
+  /*while (1)
   {
 
     if (goto_widget_flag == 1)//Go to widget
@@ -570,10 +573,11 @@ void setup() {
   lv_demo_widgets();//Main UI
   Serial.println( "Setup done" );
 
-
+*/
 }
 
 void loop() {
-  lv_timer_handler();
+  if (Serial.available()) lcd.print(Serial.read());
+  //lv_timer_handler();
   delay(5);
 }
