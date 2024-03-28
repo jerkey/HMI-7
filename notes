@@ -1,0 +1,65 @@
+Below is a link to the purchase page for the 7" ESP32 LCD Display. If you
+scroll towards the bottom you should find a section labeled "Wiki &
+Documents" which contains all information about this device.
+
+https://www.elecrow.com/esp32-display-7-inch-hmi-display-rgb-tft-lcd-touch-screen-support-lvgl.html
+
+Thanks,
+Jax
+
+from watching video there:
+https://www.youtube.com/watch?v=i8AWqLOEmfk
+ESP32-S3-WROOM-1
+DUAL CORE
+Wizee-ESP32 HMI display module
+WZ8048C070
+7" 800x400
+ESP32 2 cores
+Flash: 4MB
+SRAM: 512KB
+Main frequency: 80MHz to 240MHz
+
+arduino LVGL video:
+https://www.youtube.com/watch?v=iKJesBu_cg4
+1:10 add this to arduino preferences URL list for board managers:
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+then in boards manager get ESP32 version 2.0.3 (I had 2.0.4 installed but rolled it down to 2.0.3)
+      NOTE: Please install esp32 version 2.0.3, if you install another version,some modules may go wrong.
+1:29 STEP 2: download "factory program" which is shown in video but link is NOT present on pages:
+https://www.elecrow.com/esp32-display-7-inch-hmi-display-rgb-tft-lcd-touch-screen-support-lvgl.html
+https://www.elecrow.com/esp32-display-5-inch-hmi-display-rgb-tft-lcd-touch-screen-support-lvgl.html
+found in the wiki:
+// https://wiki.elecrow.com/index.php?title=ESP32_Display_5.0-inch_HMI_Arduino_Tutorial
+https://wiki.elecrow.com/index.php?title=ESP32_Display_7.0-inch_HMI_Arduino_Tutorial
+Download the libraries provided by elecrow:
+// https://www.elecrow.com/download/product/ESP32_Display/5.0inch/Arduino_5inch.zip
+https://www.elecrow.com/download/product/ESP32_Display/7.0inch/Arduino_7inch.zip
+  Arduino_7inch/README.txt
+  For whose silkscreen SKU on the back is WZ8048C070, please use the sample program named "HMI-7" 
+1. Under the "Tools" menu, see "Development Board ESP32" and select ESP32S3 Dev MODULE as shown in the figure.
+2. Under the "Tools" menu, see "Partition scheme" and select Huge APP(3MB No OTA/1MB SPIFFS)
+3. Under the "Tools" menu, see "PSRAM" and select OPI PSRAM
+3:20 you need the proper ui.h file for the screen size you have, probably
+/home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/UI
+put that library into the arduino library folder
+ln -s /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/UI /home/user/sketchbook/libraries/UI-esp32_LVGL_display
+ln -s /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/lvgl-3 /home/user/sketchbook/libraries/lvgl-3
+ln -s /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/LovyanGFX /home/user/sketchbook/libraries/LovyanGFX
+ln -s /home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/libraries/gt911-arduino /home/user/sketchbook/libraries/gt911-arduino
+4:05 choose ESP32S3 dev module
+FLASH MODE QIO 80MHz
+PARTITION SCHEME Huge APP(3MB No OTA/1MB SPIFFS)
+PSRAM OPI SRAM
+5:15 connect USB and open serial monitor set to 115200 baud
+press and hold BOOT button, tap RESET button, see "waiting for download" in serial monitor
+close serial monitor and upload code, then press the reset button
+
+default demo program:
+/home/user/sketchbook/ESP32_LVGL_display/Arduino_7inch/HMI-7/HMI-7.ino
+had to add the following for it to compile:
+static constexpr int MAGENTA = 0xF81F; // found in libraries/LovyanGFX/src/LGFX_TFT_eSPI.hpp
+static constexpr int BLACK = 0x0000;
+
+compiling error when trying to compile for a second time:
+https://stackoverflow.com/questions/76452246/second-time-i-compile-a-sketch-i-get-this-error-panic-runtime-error-index-out
+rm /tmp/arduino_build_*/includes.cache
